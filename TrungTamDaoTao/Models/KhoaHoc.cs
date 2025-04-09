@@ -14,5 +14,9 @@ namespace TrungTamDaoTao.Models
         public int SoLuongHocVien { get; set; } // Số lượng học viên
 
         public ICollection<DangKyKhoaHoc> DangKyKhoaHocs { get; set; }
+        public KhoaHoc()
+        {
+            DangKyKhoaHocs = new List<DangKyKhoaHoc>();
+        }
     }
 }

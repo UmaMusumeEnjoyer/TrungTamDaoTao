@@ -1,0 +1,45 @@
+﻿@model HocVien
+
+<form method="post" asp-action="DeletePOST">
+	<input asp-for="MaHocVien" hidden />"
+	<div class="border pt-3 mt-4">
+		<div class="row pb-2">
+			<h2 class=" text-primary text-md-center"> Delete Category</h2>
+			<hr />
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3">
+			<label asp-for="HoTen"></label>
+			<input asp-for="HoTen" disable class="form-control" />
+
+
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="NgaySinh"></label>
+			<input asp-for="NgaySinh" disable class="form-control" />
+
+		</div>
+		<div class="mb-3">
+			<label asp-for="SoDienThoai"></label>
+			<input asp-for="SoDienThoai" disable class="form-control" />
+
+		</div>
+		<div class="mb-3">
+			<label asp-for="Email"></label>
+			<input asp-for="Email" disable class="form-control" />
+
+		</div>
+
+		<div class="mt-3">
+			<button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
+			<a asp-controller="HocVien" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
