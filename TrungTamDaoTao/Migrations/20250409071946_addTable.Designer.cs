@@ -12,8 +12,8 @@ using TrungTamDaoTao.Data;
 namespace TrungTamDaoTao.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250408210119_a")]
-    partial class a
+    [Migration("20250409071946_addTable")]
+    partial class addTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
