@@ -1,14 +1,30 @@
-﻿namespace TrungTamDaoTao.Models
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
+using TrungTamDaoTao.Models;
+using TrungTamDaoTao.Controllers;
+
+public class DangKyKhoaHoc
 {
-    public class DangKyKhoaHoc
-    {
-        public int MaHocVien { get; set; }    // Khóa chính (ID học viên)
-        public int MaKhoaHoc { get; set; }     // Khóa học
+    [Key]
+    [DisplayName("Mã đăng ký")]
+    public int MaDangKy { get; set; } // Khóa chính (ID đăng ký)
 
-        public DateTime NgayDangKy { get; set; }  // Ngày đăng ký
+    [ForeignKey("User")]
+    [Required(ErrorMessage = "Vui lòng chọn học viên")]
+    public int MaHocVien { get; set; }
 
-        // Điều hướng đến bảng KhoaHoc và HocVien
-        public User HocVien { get; set; }
-        public KhoaHoc KhoaHoc { get; set; }
-    }
+
+    [ForeignKey("KhoaHoc")]
+    [Required(ErrorMessage = "Vui lòng chọn khóa học")]
+    public int MaKhoaHoc { get; set; }
+
+    [DisplayName("Ngày đăng ký")]
+    [DataType(DataType.Date)]
+    public DateTime NgayDangKy { get; set; } = DateTime.Now;
+
+    public KhoaHoc KhoaHoc { get; set; } // Điều hướng đến bảng KhoaHoc
+    public User User { get; set; } // Điều hướng đến bảng User
+
 }

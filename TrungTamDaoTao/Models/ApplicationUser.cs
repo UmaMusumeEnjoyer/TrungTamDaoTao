@@ -16,13 +16,12 @@ namespace TrungTamDaoTao.Models
         public DateTime? NgaySinh { get; set; } 
 
         [DisplayName("Số điện thoại")]
-        //[Required(ErrorMessage = "Số điện thoại không được để trống")]
+
         [RegularExpression(@"^0[0-9]{9,10}$", ErrorMessage = "Số điện thoại không hợp lệ")]
         public string SoDienThoai { get; set; } 
 
 
         [DisplayName("Email")]
-        //[Required(ErrorMessage = "Email không được để trống")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }  
 
@@ -32,15 +31,7 @@ namespace TrungTamDaoTao.Models
         [DisplayName("Mật khẩu")]
         public string MatKhau { get; set; }
 
-        public bool isQuantrivien { get; set; } = true;//true = quan tri vien, false = hoc vien
 
-
-        // Điều hướng đến bảng DangKyKhoaHoc (mỗi học viên có thể đăng ký nhiều khóa học)
-        public ICollection<DangKyKhoaHoc> DangKyKhoaHocs { get; set; }
-
-        public User()
-        {
-            DangKyKhoaHocs = new List<DangKyKhoaHoc>();
-        }
+        public ICollection<DangKyKhoaHoc>? DangKyKhoaHocs { get; set; }
     }
 }

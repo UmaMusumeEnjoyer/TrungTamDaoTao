@@ -13,7 +13,7 @@ namespace TrungTamDaoTao.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<User> hocVienList = _db.HocViens;
+            IEnumerable<User> hocVienList = _db.Users;
             return View(hocVienList);
         }
 
@@ -29,7 +29,7 @@ namespace TrungTamDaoTao.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.HocViens.Add(obj);
+                _db.Users.Add(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Thêm học viên thành công";
                 return RedirectToAction("Index");
@@ -44,7 +44,7 @@ namespace TrungTamDaoTao.Controllers
             {
                 return NotFound();
             }
-            var hocVienFromDb = _db.HocViens.Find(id);
+            var hocVienFromDb = _db.Users.Find(id);
             if (hocVienFromDb == null)
             {
                 return NotFound();
@@ -58,7 +58,7 @@ namespace TrungTamDaoTao.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.HocViens.Update(obj);
+                _db.Users.Update(obj);
                 _db.SaveChanges();
                 TempData["success"] = "Cập nhật học viên thành công";
                 return RedirectToAction("Index");
@@ -73,7 +73,7 @@ namespace TrungTamDaoTao.Controllers
             {
                 return NotFound();
             }
-            var hocVienFromDb = _db.HocViens.Find(id);
+            var hocVienFromDb = _db.Users.Find(id);
             if (hocVienFromDb == null)
             {
                 return NotFound();
@@ -89,7 +89,7 @@ namespace TrungTamDaoTao.Controllers
             {
                 return NotFound();
             }
-            _db.HocViens.Remove(obj);
+            _db.Users.Remove(obj);
             _db.SaveChanges();
             TempData["success"] = "Xóa học viên thành công";
             return RedirectToAction("Index");

@@ -7,26 +7,22 @@ namespace TrungTamDaoTao.Models
     {
         [Key]
         [Display(Name = "Mã khóa học")]
-        public int MaKhoaHoc { get; set; }    // Khóa chính (ID khóa học)
+        public int MaKhoaHoc { get; set; }    
 
         [Display(Name = "Tên khoá học")]
-        public string TenKhoaHoc { get; set; }  // Tên khóa học
+        public string TenKhoaHoc { get; set; } 
         [Display(Name = "Tên giảng viên")]
-        public string GiangVien { get; set; }  // Giảng viên
+        public string GiangVien { get; set; } 
         [Display(Name = "Thời gian khai giảng")]
-        public DateTime ThoiGianKhaiGiang { get; set; }  // Thời gian khai giảng
+        public DateTime ThoiGianKhaiGiang { get; set; }  
         [Display(Name = "Học phí")]
-        public decimal HocPhi { get; set; }   // Học phí
+        public decimal HocPhi { get; set; }   
         [Display(Name = "Số lượng học viên")]
-        public int SoLuongHocVien { get; set; } // Số lượng học viên
+        public int SoLuongHocVien { get; set; } 
 
         [Display(Name = "Học viên đã đăng ký")]
-        public int SoLuongHocVienHienTai { get; set; } // Số lượng học viên hiện tại
+        public int SoLuongHocVienHienTai { get; set; } 
 
-        public ICollection<DangKyKhoaHoc> DangKyKhoaHocs { get; set; }
-        public KhoaHoc()
-        {
-            DangKyKhoaHocs = new List<DangKyKhoaHoc>();
-        }
+        public ICollection<DangKyKhoaHoc>? DangKyKhoaHocs { get; set; }
     }
 }
