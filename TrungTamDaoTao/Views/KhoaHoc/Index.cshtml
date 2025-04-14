@@ -34,6 +34,9 @@
                 <th>
                     Số lượng học viên
                 </th>
+                <th>
+					Học viên đã đăng ký
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -41,20 +44,23 @@
             @foreach (var obj in Model)
             {
                 <tr>
-                    <td width="20%">
+                    <td width="15%">
                         @obj.TenKhoaHoc
                     </td>
-                    <td width="20%">
+                    <td width="15%">
                         @obj.GiangVien
                     </td>
-                    <td width="20%">
+                    <td width="15%">
                         @obj.ThoiGianKhaiGiang
                     </td>
-                    <td width="20%">
+                    <td width="15%">
                         @obj.HocPhi
                     </td>
-                    <td width="20%">
+                    <td width="15%">
                         @obj.SoLuongHocVien
+                    </td>
+                    <td width="15%">
+                        @obj.SoLuongHocVienHienTai
                     </td>
                     <td>
                         <div class="w-75 btn-group" role="group">

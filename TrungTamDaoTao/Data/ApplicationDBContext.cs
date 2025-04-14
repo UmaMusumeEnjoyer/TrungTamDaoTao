@@ -9,7 +9,7 @@ namespace TrungTamDaoTao.Data
         {
         }
 
-        public DbSet<HocVien> HocViens { get; set; }
+        public DbSet<User> HocViens { get; set; }
         public DbSet<KhoaHoc> KhoaHocs { get; set; }
         public DbSet<DangKyKhoaHoc> DangKyKhoaHocs { get; set; }
 
@@ -19,8 +19,18 @@ namespace TrungTamDaoTao.Data
 
             // Cấu hình quan hệ giữa các bảng nếu cần thiết
             modelBuilder.Entity<DangKyKhoaHoc>()
-                .HasKey(d => new { d.MaHocVien, d.MaKhoaHoc });  // Khoá chính của bảng DangKyKhoaHoc
+                .HasKey(d => new { d.MaHocVien, d.MaKhoaHoc });  // Khóa chính của bảng DangKyKhoaHoc
 
+            // Cấu hình quan hệ nhiều-nhiều (many-to-many)
+            modelBuilder.Entity<DangKyKhoaHoc>()
+                .HasOne(d => d.HocVien)
+                .WithMany(h => h.DangKyKhoaHocs)  // HocVien có nhiều DangKyKhoaHocs
+                .HasForeignKey(d => d.MaHocVien);
+
+            modelBuilder.Entity<DangKyKhoaHoc>()
+                .HasOne(d => d.KhoaHoc)
+                .WithMany(k => k.DangKyKhoaHocs)  // KhoaHoc có nhiều DangKyKhoaHocs
+                .HasForeignKey(d => d.MaKhoaHoc);
         }
     }
 }

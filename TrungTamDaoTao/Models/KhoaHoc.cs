@@ -20,6 +20,9 @@ namespace TrungTamDaoTao.Models
         [Display(Name = "Số lượng học viên")]
         public int SoLuongHocVien { get; set; } // Số lượng học viên
 
+        [Display(Name = "Học viên đã đăng ký")]
+        public int SoLuongHocVienHienTai { get; set; } // Số lượng học viên hiện tại
+
         public ICollection<DangKyKhoaHoc> DangKyKhoaHocs { get; set; }
         public KhoaHoc()
         {

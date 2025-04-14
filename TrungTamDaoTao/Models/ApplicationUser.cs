@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TrungTamDaoTao.Models
 {
-    public class HocVien
+    public class User
     {
         [Key]
         [DisplayName("Mã học viên")]
@@ -30,13 +30,15 @@ namespace TrungTamDaoTao.Models
         public string TaiKhoan { get; set; }  
 
         [DisplayName("Mật khẩu")]
-        public string MatKhau { get; set; }   
+        public string MatKhau { get; set; }
+
+        public bool isQuantrivien { get; set; } = true;//true = quan tri vien, false = hoc vien
 
 
         // Điều hướng đến bảng DangKyKhoaHoc (mỗi học viên có thể đăng ký nhiều khóa học)
         public ICollection<DangKyKhoaHoc> DangKyKhoaHocs { get; set; }
 
-        public HocVien()
+        public User()
         {
             DangKyKhoaHocs = new List<DangKyKhoaHoc>();
         }

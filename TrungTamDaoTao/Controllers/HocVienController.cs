@@ -13,7 +13,7 @@ namespace TrungTamDaoTao.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<HocVien> hocVienList = _db.HocViens;
+            IEnumerable<User> hocVienList = _db.HocViens;
             return View(hocVienList);
         }
 
@@ -25,7 +25,7 @@ namespace TrungTamDaoTao.Controllers
         //POST: HocVien/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(HocVien obj)
+        public IActionResult Create(User obj)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace TrungTamDaoTao.Controllers
         //POST: HocVien/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(HocVien obj)
+        public IActionResult Edit(User obj)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace TrungTamDaoTao.Controllers
         //POST: HocVien/Delete
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(HocVien obj)
+        public IActionResult DeletePOST(User obj)
         {
             if (obj == null)
             {
@@ -94,5 +94,7 @@ namespace TrungTamDaoTao.Controllers
             TempData["success"] = "Xóa học viên thành công";
             return RedirectToAction("Index");
         }
+
+
     }
 }

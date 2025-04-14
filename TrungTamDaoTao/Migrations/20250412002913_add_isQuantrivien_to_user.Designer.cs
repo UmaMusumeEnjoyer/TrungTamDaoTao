@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrungTamDaoTao.Data;
 
@@ -11,9 +12,11 @@ using TrungTamDaoTao.Data;
 namespace TrungTamDaoTao.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250412002913_add_isQuantrivien_to_user")]
+    partial class add_isQuantrivien_to_user
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,12 +33,20 @@ namespace TrungTamDaoTao.Migrations
                     b.Property<int>("MaKhoaHoc")
                         .HasColumnType("int");
 
+                    b.Property<int>("HocVienMaHocVien")
+                        .HasColumnType("int");
+
+                    b.Property<int>("KhoaHocMaKhoaHoc")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("NgayDangKy")
                         .HasColumnType("datetime2");
 
                     b.HasKey("MaHocVien", "MaKhoaHoc");
 
-                    b.HasIndex("MaKhoaHoc");
+                    b.HasIndex("HocVienMaHocVien");
+
+                    b.HasIndex("KhoaHocMaKhoaHoc");
 
                     b.ToTable("DangKyKhoaHocs");
                 });
@@ -56,9 +67,6 @@ namespace TrungTamDaoTao.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SoLuongHocVien")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SoLuongHocVienHienTai")
                         .HasColumnType("int");
 
                     b.Property<string>("TenKhoaHoc")
@@ -116,13 +124,13 @@ namespace TrungTamDaoTao.Migrations
                 {
                     b.HasOne("TrungTamDaoTao.Models.User", "HocVien")
                         .WithMany("DangKyKhoaHocs")
-                        .HasForeignKey("MaHocVien")
+                        .HasForeignKey("HocVienMaHocVien")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("TrungTamDaoTao.Models.KhoaHoc", "KhoaHoc")
                         .WithMany("DangKyKhoaHocs")
-                        .HasForeignKey("MaKhoaHoc")
+                        .HasForeignKey("KhoaHocMaKhoaHoc")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
