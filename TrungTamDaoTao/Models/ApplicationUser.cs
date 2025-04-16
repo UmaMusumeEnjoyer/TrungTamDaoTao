@@ -10,7 +10,7 @@ namespace TrungTamDaoTao.Models
         public int MaHocVien { get; set; }    
 
         [DisplayName("Họ tên")]
-        public string HoTen { get; set; }    
+        public string? HoTen { get; set; }    
 
         [DisplayName("Ngày sinh")]
         public DateTime? NgaySinh { get; set; } 
@@ -31,6 +31,9 @@ namespace TrungTamDaoTao.Models
         [DisplayName("Mật khẩu")]
         public string MatKhau { get; set; }
 
+        public string Role { get; set; } = "User"; // Giá trị mặc định là "User"
+
+        
 
         public ICollection<DangKyKhoaHoc>? DangKyKhoaHocs { get; set; }
     }

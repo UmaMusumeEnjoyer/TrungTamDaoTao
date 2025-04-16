@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TrungTamDaoTao.Models.KhoaHoc>
+
+@{
+    ViewData["Title"] = "Danh sách khóa học";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên khóa học</th>
+            <th>Giảng viên</th>
+            <th>Thời gian khai giảng</th>
+            <th>Số lượng học viên</th>
+            <th>Học viên đã đăng ký</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var khoaHoc in Model)
+        {
+            <tr>
+                <td>@khoaHoc.TenKhoaHoc</td>
+                <td>@khoaHoc.GiangVien</td>
+                <td>@khoaHoc.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
+                <td>@khoaHoc.SoLuongHocVien</td>
+                <td>@khoaHoc.SoLuongHocVienHienTai</td>
+                <td>
+                    @if (khoaHoc.DangKyKhoaHocs != null && khoaHoc.DangKyKhoaHocs.Any(d => d.User.MaHocVien == 1)) // Giả sử 1 là ID của học viên hiện tại
+                    {
+                        <form method="post" asp-action="Unregister" asp-route-maKhoaHoc="@khoaHoc.MaKhoaHoc" asp-route-maHocVien="1">
+                            <button type="submit" class="btn btn-danger">Huỷ đăng ký</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-action="Register" asp-route-maKhoaHoc="@khoaHoc.MaKhoaHoc" asp-route-maHocVien="1">
+                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
