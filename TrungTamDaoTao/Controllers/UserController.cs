@@ -20,8 +20,10 @@ namespace TrungTamDaoTao.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
+            var user = _context.Users.FirstOrDefault(u => u.MaHocVien == Convert.ToInt32(HttpContext.Session.GetString("MaHocVien")));
+
             // Nội dung cho User
-            ViewBag.Message = "Chào mừng User!";
+            ViewBag.Message = "Chào mừng " + user.HoTen;
             return View();
         }
 
@@ -31,14 +33,14 @@ namespace TrungTamDaoTao.Controllers
         public IActionResult UserEdit()
         {
             // Kiểm tra xem session có tồn tại và có giá trị không
-            var username = HttpContext.Session.GetString("Username");
+            var username = HttpContext.Session.GetString("MaHocVien");
             if (string.IsNullOrEmpty(username))
             {
                 // Nếu session không tồn tại, trả về lỗi hoặc yêu cầu người dùng đăng nhập lại
                 return RedirectToAction("Login", "Account");
             }
 
-            var user = _context.Users.FirstOrDefault(u => u.TaiKhoan == username);
+            var user = _context.Users.FirstOrDefault(u => u.MaHocVien == Convert.ToInt32(username));
 
             if (user == null)
             {

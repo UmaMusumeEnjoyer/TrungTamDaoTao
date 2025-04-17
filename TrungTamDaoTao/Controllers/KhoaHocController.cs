@@ -19,7 +19,7 @@ namespace TrungTamDaoTao.Controllers
             return View(khoaHocList);
         }
 
-        [Authorize(Roles = "Admin")]
+        
         //GET: KhoaHoc/Create
         public IActionResult Create()
         {
@@ -41,7 +41,7 @@ namespace TrungTamDaoTao.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+       
         //GET: KhoaHoc/Edit
         public IActionResult Edit(int? id)
         {
@@ -73,7 +73,6 @@ namespace TrungTamDaoTao.Controllers
 
 
 
-        [Authorize(Roles = "Admin")]
         //GET: KhoaHoc/Delete
         public IActionResult Delete(int? id)
         {
@@ -107,5 +106,7 @@ namespace TrungTamDaoTao.Controllers
             TempData["success"] = "Xóa khóa học thành công";
             return RedirectToAction("Index");
         }
+
+
     }
 }

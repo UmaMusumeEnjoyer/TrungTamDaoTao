@@ -1,0 +1,33 @@
+﻿@model IEnumerable<dynamic> 
+
+@{
+    ViewData["Title"] = "Doanh Thu Khóa Học";
+}
+
+<h2>Doanh Thu Khóa Học</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>MaKhoaHoc</th>
+            <th>Tên Khóa Học</th>
+            <th>Giảng Viên</th>
+            <th>Học Phí</th>
+            <th>Số Lượng Học Viên Hiện Tại</th>
+            <th>Doanh Thu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var khoaHoc in Model)
+        {
+            <tr>
+                <td>@khoaHoc.MaKhoaHoc</td>
+                <td>@khoaHoc.TenKhoaHoc</td>
+                <td>@khoaHoc.GiangVien</td>
+                <td>@khoaHoc.HocPhi</td>
+                <td>@khoaHoc.SoLuongHocVienHienTai</td>
+                <td>@khoaHoc.DoanhThu</td>
+            </tr>
+        }
+    </tbody>
+</table>

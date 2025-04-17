@@ -26,10 +26,12 @@ namespace TrungTamDaoTao.Controllers
 
         // Đăng ký khóa học cho học viên
         [HttpPost]
-        public async Task<IActionResult> Register(string maKhoaHoc, string maHocVien)
+        public async Task<IActionResult> Register(int maKhoaHoc, int maHocVien)
         {
             // Tìm khóa học với maKhoaHoc
+            maHocVien = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
             
+
             var khoaHoc = await _context.KhoaHocs
                 .FirstOrDefaultAsync(k => k.MaKhoaHoc == maKhoaHoc);
 
@@ -53,6 +55,17 @@ namespace TrungTamDaoTao.Controllers
             if (existingRegistration != null)
             {
                 TempData["ErrorMessage"] = "Bạn đã đăng ký khóa học này rồi!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var time = DateTime.Now;
+            var startTime = await _context.KhoaHocs
+                .Where(k => k.MaKhoaHoc == maKhoaHoc)
+                .Select(k => k.ThoiGianKhaiGiang)
+                .FirstOrDefaultAsync();
+            if(startTime < time)
+            {
+                TempData["ErrorMessage"] = "Khóa học đã bắt đầu, không thể đăng ký!";
                 return RedirectToAction(nameof(Index));
             }
 
@@ -81,6 +94,7 @@ namespace TrungTamDaoTao.Controllers
         [HttpPost]
         public async Task<IActionResult> Unregister(int maKhoaHoc, int maHocVien)
         {
+            maHocVien = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
             // Tìm khóa học với maKhoaHoc
             var khoaHoc = await _context.KhoaHocs
                 .FirstOrDefaultAsync(k => k.MaKhoaHoc == maKhoaHoc);
@@ -98,6 +112,17 @@ namespace TrungTamDaoTao.Controllers
             if (registration == null)
             {
                 TempData["ErrorMessage"] = "Bạn chưa đăng ký khóa học này!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var time = DateTime.Now;
+            var startTime = await _context.KhoaHocs
+                .Where(k => k.MaKhoaHoc == maKhoaHoc)
+                .Select(k => k.ThoiGianKhaiGiang)
+                .FirstOrDefaultAsync();
+            if (startTime < time)
+            {
+                TempData["ErrorMessage"] = "Khóa học đã bắt đầu, không thể huỷ đăng ký!";
                 return RedirectToAction(nameof(Index));
             }
 

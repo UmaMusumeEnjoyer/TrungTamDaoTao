@@ -1,106 +1,134 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TrungTamDaoTao.Data;
 using TrungTamDaoTao.Models;
 
-namespace TrungTamDaoTao.Controllers
+public class HocVienController : Controller
 {
-    public class HocVienController : Controller
+    private readonly ApplicationDbContext _db;
+
+    public HocVienController(ApplicationDbContext db)
     {
-        private readonly ApplicationDbContext _db;
-        public HocVienController(ApplicationDbContext db)
+        _db = db;
+    }
+
+    public IActionResult Index()
+    {
+        IEnumerable<User> hocVienList = _db.Users;
+        return View(hocVienList);
+    }
+
+
+
+
+    // Phân quyền cho hành động Create, Edit, Delete
+    [HttpGet]
+    public IActionResult Create()
+    {
+        if (!UserIsAdmin())
         {
-            _db = db;
+            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+        }
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(User obj)
+    {
+        if (!UserIsAdmin())
+        {
+            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
         }
 
-        
-        public IActionResult Index()
+        if (ModelState.IsValid)
         {
-            IEnumerable<User> hocVienList = _db.Users;
-            return View(hocVienList);
-        }
-
-        [Authorize(Roles = "Admin")]
-        //GET: HocVien/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-        //POST: HocVien/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(User obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Users.Add(obj);
-                _db.SaveChanges();
-                TempData["success"] = "Thêm học viên thành công";
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
-
-        [Authorize(Roles = "Admin")]
-        //GET: HocVien/Edit
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var hocVienFromDb = _db.Users.Find(id);
-            if (hocVienFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(hocVienFromDb);
-        }
-        //POST: HocVien/Edit
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Edit(User obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Users.Update(obj);
-                _db.SaveChanges();
-                TempData["success"] = "Cập nhật học viên thành công";
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
-
-        [Authorize(Roles = "Admin")]
-        //GET: HocVien/Delete
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var hocVienFromDb = _db.Users.Find(id);
-            if (hocVienFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(hocVienFromDb);
-        }
-        //POST: HocVien/Delete
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(User obj)
-        {
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _db.Users.Remove(obj);
+            _db.Users.Add(obj);
             _db.SaveChanges();
-            TempData["success"] = "Xóa học viên thành công";
+            TempData["success"] = "Thêm học viên thành công";
             return RedirectToAction("Index");
         }
+        return View(obj);
+    }
 
+    [HttpGet]
+    public IActionResult Edit(int? id)
+    {
+        if (!UserIsAdmin())
+        {
+            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+        }
+        var hocVienFromDb = _db.Users.Find(id);
+        if (hocVienFromDb == null)
+        {
+            return NotFound();
+        }
+        return View(hocVienFromDb);
+    }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(User obj)
+    {
+        if (!UserIsAdmin())
+        {
+            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+        }
+
+        if (ModelState.IsValid)
+        {
+            _db.Users.Update(obj);
+            _db.SaveChanges();
+            TempData["success"] = "Cập nhật học viên thành công";
+            return RedirectToAction("Index");
+        }
+        return View(obj);
+    }
+
+    [HttpGet]
+    public IActionResult Delete(int? id)
+    {
+        if (!UserIsAdmin())
+        {
+            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+        }
+
+        var hocVienFromDb = _db.Users.Find(id);
+        if (hocVienFromDb == null)
+        {
+            return NotFound();
+        }
+        return View(hocVienFromDb);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeletePOST(User obj)
+    {
+        if (!UserIsAdmin())
+        {
+            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+        }
+
+        if (obj == null)
+        {
+            return NotFound();
+        }
+        _db.Users.Remove(obj);
+        _db.SaveChanges();
+        TempData["success"] = "Xóa học viên thành công";
+        return RedirectToAction("Index");
+    }
+
+    // Kiểm tra nếu người dùng có vai trò Admin
+    private bool UserIsAdmin()
+    {
+        // Lấy thông tin người dùng hiện tại
+        var userid = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
+
+        // Tìm người dùng trong cơ sở dữ liệu
+        var user = _db.Users.FirstOrDefault(u => u.MaHocVien == userid);
+
+        // Kiểm tra nếu người dùng có vai trò Admin
+        return user != null && user.Role == "Admin";
     }
 }

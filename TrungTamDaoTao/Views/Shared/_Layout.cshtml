@@ -9,32 +9,50 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TrungTamDaoTao.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/HomePage.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TrungTamDaoTao</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Trung tâm đào tạo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        @if (Context.Session.GetString("MaHocVien") == null)  // Kiểm tra đăng nhập
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                            </li>
+                        }
+                        @if (Context.Session.GetString("Role") == "Admin")
+                        {
+                            <!-- Nút quản lý khóa học -->
+                            <a class="btn btn-primary" asp-controller="KhoaHoc" asp-action="Index">Danh sách khóa học</a>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="HocVien" asp-action="Index">Học viên</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="KhoaHoc" asp-action="Index">Khoá học</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DangKyKhoaHoc" asp-action="Index">Đăng ký khoá học</a>
-                        </li>
+                            <!-- Nút thêm khóa học -->
+                            <a class="btn btn-success" asp-controller="HocVien" asp-action="Index">Danh sách học viên</a>
 
+                            <a class="btn btn-success" asp-controller="Admin" asp-action="Revenue">Doanh thu các khoá học</a>
+                        }
+                        else if (Context.Session.GetString("Role") == "User")
+                        {
+                            <!-- Nút quản lý khóa học -->
+                            <a class="btn btn-primary" asp-controller="KhoaHoc" asp-action="Index">Danh sách khóa học</a>
 
+                            <!-- Nút chỉnh sửa hồ sơ -->
+                            <a class="btn btn-success" asp-controller="User" asp-action="UserEdit">Chỉnh sửa hồ sơ</a>
+
+                            <a class="btn btn-success" asp-controller="DangKyKhoaHoc" asp-action="Index">Đăng ký khoá học</a>
+
+							<a class="btn btn-success" asp-controller="KhoaHoc" asp-action="LichHoc">Lịch học</a>
+                        }
                         <partial name="_LoginPartial" />
                     </ul>
                 </div>

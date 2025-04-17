@@ -9,6 +9,13 @@
 		<div asp-validation-summary="All"></div>
 
 		<div class="mb-3">
+			<label asp-for="TenKhoaHoc"></label>
+			<input asp-for="TenKhoaHoc" class="form-control" />
+			<span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+
+		</div>
+
+		<div class="mb-3">
 			<label asp-for="GiangVien"></label>
 			<input asp-for="GiangVien" class="form-control" />
 			<span asp-validation-for="GiangVien" class="text-danger"></span>
@@ -19,6 +26,12 @@
 			<label asp-for="ThoiGianKhaiGiang"></label>
 			<input asp-for="ThoiGianKhaiGiang" type="date" class="form-control" />
 			<span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="SoLuongHocVien"></label>
+			<input asp-for="SoLuongHocVien"  class="form-control" />
+			<span asp-validation-for="SoLuongHocVien" class="text-danger"></span>
 		</div>
 
 		<div class="mb-3">

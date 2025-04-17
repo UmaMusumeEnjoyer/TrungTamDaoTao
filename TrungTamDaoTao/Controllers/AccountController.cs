@@ -33,7 +33,7 @@ namespace TrungTamDaoTao.Controllers
                 if (user != null)
                 {
                     // Lưu thông tin người dùng vào session
-                    HttpContext.Session.SetString("Username", user.TaiKhoan);
+                    HttpContext.Session.SetString("MaHocVien", user.MaHocVien.ToString());
                     HttpContext.Session.SetString("Role", user.Role);
 
                     // Điều hướng đến trang phù hợp với vai trò người dùng
