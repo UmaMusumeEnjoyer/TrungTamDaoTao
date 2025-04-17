@@ -25,11 +25,19 @@ namespace TrungTamDaoTao.Controllers
             return View();
         }
 
+
+        [HttpGet]
         // GET: User/Edit
-        public IActionResult Edit()
+        public IActionResult UserEdit()
         {
-            // Lấy thông tin người dùng từ session (hoặc từ User.Identity.Name nếu đã đăng nhập)
-            var username = HttpContext.Session.GetString("TaiKhoan");  // Lấy tên tài khoản người dùng hiện tại
+            // Kiểm tra xem session có tồn tại và có giá trị không
+            var username = HttpContext.Session.GetString("Username");
+            if (string.IsNullOrEmpty(username))
+            {
+                // Nếu session không tồn tại, trả về lỗi hoặc yêu cầu người dùng đăng nhập lại
+                return RedirectToAction("Login", "Account");
+            }
+
             var user = _context.Users.FirstOrDefault(u => u.TaiKhoan == username);
 
             if (user == null)
@@ -37,13 +45,14 @@ namespace TrungTamDaoTao.Controllers
                 return NotFound();
             }
 
-            return View(user);  // Trả về view với dữ liệu người dùng
+            return View(user);
         }
+
 
         // POST: User/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(User model)
+        public IActionResult UserEdit(User model)
         {
             if (ModelState.IsValid)
             {

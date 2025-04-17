@@ -63,6 +63,7 @@ namespace TrungTamDaoTao.Controllers
             return RedirectToAction("Login");
         }
 
+
         public IActionResult Register()
         {
             return View();

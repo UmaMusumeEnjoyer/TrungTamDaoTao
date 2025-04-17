@@ -26,9 +26,10 @@ namespace TrungTamDaoTao.Controllers
 
         // Đăng ký khóa học cho học viên
         [HttpPost]
-        public async Task<IActionResult> Register(int maKhoaHoc, int maHocVien)
+        public async Task<IActionResult> Register(string maKhoaHoc, string maHocVien)
         {
             // Tìm khóa học với maKhoaHoc
+            
             var khoaHoc = await _context.KhoaHocs
                 .FirstOrDefaultAsync(k => k.MaKhoaHoc == maKhoaHoc);
 

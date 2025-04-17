@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TrungTamDaoTao.Data;
 using TrungTamDaoTao.Models;
 
@@ -11,12 +12,14 @@ namespace TrungTamDaoTao.Controllers
         {
             _context = context;
         }
+
         public IActionResult Index()
         {
             IEnumerable<KhoaHoc> khoaHocList = _context.KhoaHocs;
             return View(khoaHocList);
         }
 
+        [Authorize(Roles = "Admin")]
         //GET: KhoaHoc/Create
         public IActionResult Create()
         {
@@ -36,6 +39,9 @@ namespace TrungTamDaoTao.Controllers
             }
             return View(obj);
         }
+
+
+        [Authorize(Roles = "Admin")]
         //GET: KhoaHoc/Edit
         public IActionResult Edit(int? id)
         {
@@ -64,6 +70,10 @@ namespace TrungTamDaoTao.Controllers
             }
             return View(obj);
         }
+
+
+
+        [Authorize(Roles = "Admin")]
         //GET: KhoaHoc/Delete
         public IActionResult Delete(int? id)
         {

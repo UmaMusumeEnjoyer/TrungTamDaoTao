@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TrungTamDaoTao.Data;
 using TrungTamDaoTao.Models;
 
@@ -11,12 +12,15 @@ namespace TrungTamDaoTao.Controllers
         {
             _db = db;
         }
+
+        
         public IActionResult Index()
         {
             IEnumerable<User> hocVienList = _db.Users;
             return View(hocVienList);
         }
 
+        [Authorize(Roles = "Admin")]
         //GET: HocVien/Create
         public IActionResult Create()
         {
@@ -37,6 +41,7 @@ namespace TrungTamDaoTao.Controllers
             return View(obj);
         }
 
+        [Authorize(Roles = "Admin")]
         //GET: HocVien/Edit
         public IActionResult Edit(int? id)
         {
@@ -66,6 +71,7 @@ namespace TrungTamDaoTao.Controllers
             return View(obj);
         }
 
+        [Authorize(Roles = "Admin")]
         //GET: HocVien/Delete
         public IActionResult Delete(int? id)
         {
