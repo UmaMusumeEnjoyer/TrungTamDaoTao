@@ -14,6 +14,7 @@ public class HocVienController : Controller
 
     public IActionResult Index()
     {
+
         IEnumerable<User> hocVienList = _db.Users;
         return View(hocVienList);
     }
@@ -25,9 +26,9 @@ public class HocVienController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        if (!UserIsAdmin())
+        if (HttpContext.Session.GetString("Role") != "Admin")
         {
-            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+            return RedirectToAction("Login", "Account");
         }
         return View();
     }
@@ -36,9 +37,9 @@ public class HocVienController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(User obj)
     {
-        if (!UserIsAdmin())
+        if (HttpContext.Session.GetString("Role") != "Admin")
         {
-            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+            return RedirectToAction("Login", "Account");
         }
 
         if (ModelState.IsValid)
@@ -60,9 +61,9 @@ public class HocVienController : Controller
     [HttpGet]
     public IActionResult Edit(int? id)
     {
-        if (!UserIsAdmin())
+        if (HttpContext.Session.GetString("Role") != "Admin")
         {
-            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+            return RedirectToAction("Login", "Account");
         }
         var hocVienFromDb = _db.Users.Find(id);
         if (hocVienFromDb == null)
@@ -76,9 +77,9 @@ public class HocVienController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Edit(User obj)
     {
-        if (!UserIsAdmin())
+        if (HttpContext.Session.GetString("Role") != "Admin")
         {
-            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+            return RedirectToAction("Login", "Account");
         }
 
         if (ModelState.IsValid)
@@ -94,9 +95,9 @@ public class HocVienController : Controller
     [HttpGet]
     public IActionResult Delete(int? id)
     {
-        if (!UserIsAdmin())
+        if (HttpContext.Session.GetString("Role") != "Admin")
         {
-            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+            return RedirectToAction("Login", "Account");
         }
 
         var hocVienFromDb = _db.Users.Find(id);
@@ -111,9 +112,9 @@ public class HocVienController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult DeletePOST(User obj)
     {
-        if (!UserIsAdmin())
+        if (HttpContext.Session.GetString("Role") != "Admin")
         {
-            return Forbid(); // Nếu không phải Admin, trả về lỗi 403
+            return RedirectToAction("Login", "Account");
         }
 
         if (obj == null)

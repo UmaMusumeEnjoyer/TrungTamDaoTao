@@ -26,6 +26,10 @@ namespace TrungTamDaoTao.Controllers
 
         public IActionResult Revenue()
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             var khoaHocs = _db.KhoaHocs
                 .Select(k => new
                 {

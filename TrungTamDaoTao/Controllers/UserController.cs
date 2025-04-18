@@ -41,6 +41,10 @@ namespace TrungTamDaoTao.Controllers
         // GET: User/Edit
         public IActionResult UserEdit()
         {
+            if (HttpContext.Session.GetString("Role") != "User")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             // Kiểm tra xem session có tồn tại và có giá trị không
             var username = HttpContext.Session.GetString("MaHocVien");
             if (string.IsNullOrEmpty(username))
@@ -65,6 +69,10 @@ namespace TrungTamDaoTao.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult UserEdit(User model)
         {
+            if (HttpContext.Session.GetString("Role") != "User")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (ModelState.IsValid)
             {
                 // Tìm người dùng trong cơ sở dữ liệu dựa trên tên tài khoản

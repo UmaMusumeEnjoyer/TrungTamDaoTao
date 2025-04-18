@@ -17,7 +17,8 @@
             // Hiển thị danh sách tất cả các khóa học và thông tin đăng ký
             public async Task<IActionResult> Index()
             {
-                var khoaHocs = await _context.KhoaHocs
+
+            var khoaHocs = await _context.KhoaHocs
                     .Include(k => k.DangKyKhoaHocs)
                     .ThenInclude(d => d.User) // Đưa thông tin học viên
                     .ToListAsync();
@@ -28,8 +29,12 @@
             [HttpPost]
             public async Task<IActionResult> Register(int maKhoaHoc, int maHocVien)
             {
-                // Tìm khóa học với maKhoaHoc
-                maHocVien = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
+            if (HttpContext.Session.GetString("Role") != "User")
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            // Tìm khóa học với maKhoaHoc
+            maHocVien = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
             
 
                 var khoaHoc = await _context.KhoaHocs
@@ -94,7 +99,11 @@
             [HttpPost]
             public async Task<IActionResult> Unregister(int maKhoaHoc, int maHocVien)
             {
-                maHocVien = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
+            if (HttpContext.Session.GetString("Role") != "User")
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            maHocVien = Convert.ToInt32(HttpContext.Session.GetString("MaHocVien"));
                 // Tìm khóa học với maKhoaHoc
                 var khoaHoc = await _context.KhoaHocs
                     .FirstOrDefaultAsync(k => k.MaKhoaHoc == maKhoaHoc);

@@ -15,6 +15,7 @@ namespace TrungTamDaoTao.Controllers
 
         public IActionResult Index()
         {
+
             IEnumerable<KhoaHoc> khoaHocList = _context.KhoaHocs;
             return View(khoaHocList);
         }
@@ -23,6 +24,10 @@ namespace TrungTamDaoTao.Controllers
         //GET: KhoaHoc/Create
         public IActionResult Create()
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View();
         }
         //POST: KhoaHoc/Create
@@ -30,6 +35,10 @@ namespace TrungTamDaoTao.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(KhoaHoc obj)
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (ModelState.IsValid)
             {
                 var existingUser = _context.KhoaHocs.FirstOrDefault(u => u.TenKhoaHoc == obj.TenKhoaHoc);
@@ -47,10 +56,14 @@ namespace TrungTamDaoTao.Controllers
         }
 
 
-       
+        
         //GET: KhoaHoc/Edit
         public IActionResult Edit(int? id)
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -67,6 +80,10 @@ namespace TrungTamDaoTao.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(KhoaHoc obj)
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (ModelState.IsValid)
             {
                 _context.KhoaHocs.Update(obj);
@@ -82,6 +99,10 @@ namespace TrungTamDaoTao.Controllers
         //GET: KhoaHoc/Delete
         public IActionResult Delete(int? id)
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -98,20 +119,34 @@ namespace TrungTamDaoTao.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(KhoaHoc obj)
         {
+            if (HttpContext.Session.GetString("Role") != "Admin")
+            {
+                return RedirectToAction("Login", "Account");
+            }
             if (obj == null)
             {
                 return NotFound();
             }
+
             var khoaHocFromDb = _context.KhoaHocs.Find(obj.MaKhoaHoc);
             if (khoaHocFromDb == null)
             {
                 return NotFound();
             }
+
+            var khoaHocFromDb2 = _context.DangKyKhoaHocs.FirstOrDefault(u => u.MaKhoaHoc == obj.MaKhoaHoc);
+            if (khoaHocFromDb2 != null)
+            {
+                ModelState.AddModelError(string.Empty, "Không thể xóa khóa học này vì có học viên đã đăng ký.");
+                return View("Delete", khoaHocFromDb); 
+            }
+
             _context.KhoaHocs.Remove(khoaHocFromDb);
             _context.SaveChanges();
             TempData["success"] = "Xóa khóa học thành công";
             return RedirectToAction("Index");
         }
+
 
 
     }
