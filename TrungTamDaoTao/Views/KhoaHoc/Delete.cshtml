@@ -20,6 +20,12 @@
             </div>
 
             <div class="mb-3">
+                <label asp-for="ThoiGianKhaiGiang" class="form-label">Học phí</label>
+                <input asp-for="ThoiGianKhaiGiang" type="date" class="form-control" />
+                <span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
                 <label asp-for="HocPhi" class="form-label">Học phí</label>
                 <input asp-for="HocPhi" disabled class="form-control" />
             </div>

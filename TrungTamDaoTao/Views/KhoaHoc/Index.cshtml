@@ -28,6 +28,7 @@
             <tr>
                 <th>Tên khóa học</th>
                 <th>Giảng viên</th>
+				<th>Thời gian khai giảng</th>
                 <th>Học phí</th>
                 <th>Số học viên</th>
                 <th>Số lượng học viên hiện tại</th>
@@ -43,6 +44,7 @@
                 <tr>
                     <td>@obj.TenKhoaHoc</td>
                     <td>@obj.GiangVien</td>
+					<td>@obj.ThoiGianKhaiGiang.ToString("dd/MM/yyyy")</td>
                     <td>@obj.HocPhi.ToString("C0")</td>
                     <td>@obj.SoLuongHocVien</td>
                     <td>@obj.SoLuongHocVienHienTai</td>
