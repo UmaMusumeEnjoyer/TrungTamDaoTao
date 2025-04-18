@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TrungTamDaoTao.Data;
 using TrungTamDaoTao.Models;
 
@@ -42,6 +43,12 @@ public class HocVienController : Controller
 
         if (ModelState.IsValid)
         {
+            var existingUser = _db.Users.FirstOrDefault(u => u.TaiKhoan == obj.TaiKhoan);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError(string.Empty, "Tên tài khoản đã tồn tại.");
+                return View(obj);
+            }
             _db.Users.Add(obj);
             _db.SaveChanges();
             TempData["success"] = "Thêm học viên thành công";

@@ -1,54 +1,53 @@
 ﻿@model KhoaHoc
 
 <form method="post" asp-action="Edit">
-	<div class="border pt-3 mt-4">
-		<div class="row pb-2">
-			<h2 class=" text-primary text-md-center">Chỉnh sửa khoá học</h2>
-			<hr />
-		</div>
-		<div asp-validation-summary="All"></div>
+    <div class="card border-light mt-4">
+        <div class="card-header bg-warning text-white text-center">
+            <h2>Chỉnh Sửa Khóa Học</h2>
+        </div>
+        <div class="card-body">
+            <div asp-validation-summary="All"></div>
 
-		<div class="mb-3">
-			<label asp-for="TenKhoaHoc"></label>
-			<input asp-for="TenKhoaHoc" class="form-control" />
-			<span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+            <div class="mb-3">
+                <label asp-for="MaKhoaHoc" class="form-label">Mã khóa học</label>
+                <input asp-for="MaKhoaHoc" class="form-control" readonly />
+                <span asp-validation-for="MaKhoaHoc" class="text-danger"></span>
+            </div>
 
-		</div>
+            <div class="mb-3">
+                <label asp-for="TenKhoaHoc" class="form-label">Tên khóa học</label>
+                <input asp-for="TenKhoaHoc" class="form-control" />
+                <span asp-validation-for="TenKhoaHoc" class="text-danger"></span>
+            </div>
 
-		<div class="mb-3">
-			<label asp-for="GiangVien"></label>
-			<input asp-for="GiangVien" class="form-control" />
-			<span asp-validation-for="GiangVien" class="text-danger"></span>
+            <div class="mb-3">
+                <label asp-for="GiangVien" class="form-label">Giảng viên</label>
+                <input asp-for="GiangVien" class="form-control" />
+                <span asp-validation-for="GiangVien" class="text-danger"></span>
+            </div>
 
-		</div>
+            <div class="mb-3">
+                <label asp-for="HocPhi" class="form-label">Học phí</label>
+                <input asp-for="HocPhi" type="number" class="form-control" />
+                <span asp-validation-for="HocPhi" class="text-danger"></span>
+            </div>
 
-		<div class="mb-3">
-			<label asp-for="ThoiGianKhaiGiang"></label>
-			<input asp-for="ThoiGianKhaiGiang" type="date" class="form-control" />
-			<span asp-validation-for="ThoiGianKhaiGiang" class="text-danger"></span>
-		</div>
+            <div class="mb-3">
+                <label asp-for="SoLuongHocVien" class="form-label">Số lượng học viên</label>
+                <input asp-for="SoLuongHocVien" type="number" class="form-control" />
+                <span asp-validation-for="SoLuongHocVien" class="text-danger"></span>
+            </div>
 
-		<div class="mb-3">
-			<label asp-for="SoLuongHocVien"></label>
-			<input asp-for="SoLuongHocVien"  class="form-control" />
-			<span asp-validation-for="SoLuongHocVien" class="text-danger"></span>
-		</div>
-
-		<div class="mb-3">
-			<label asp-for="HocPhi"></label>
-			<input asp-for="HocPhi" class="form-control" />
-			<span asp-validation-for="HocPhi" class="text-danger"></span>
-		</div>
-
-		<div class="mt-3">
-			<button type="submit" class="btn btn-primary" style="width:150px">Update</button>
-			<a asp-controller="KhoaHoc" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
-		</div>
-	</div>
+            <div class="mt-3 text-center">
+                <button type="submit" class="btn btn-primary" style="width:150px">Cập Nhật</button>
+                <a asp-controller="KhoaHoc" asp-action="Index" class="btn btn-secondary" style="width:150px">Quay lại</a>
+            </div>
+        </div>
+    </div>
 </form>
 
 @section Scripts {
-	@{
-		<partial name="_ValidationScriptsPartial" />
-	}
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }

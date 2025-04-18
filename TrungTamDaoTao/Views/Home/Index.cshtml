@@ -1,9 +1,90 @@
 ﻿@{
-    ViewData["Title"] = "Login";
-    //Layout = "~/Views/Shared/_AccountLayout.cshtml";
+    ViewData["Title"] = "Trang Chủ";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Tôi yêu DUT UwU</h1>
-    <p>Thêm điểm rèn luyện go brr brr</p>
-</div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/HomePage.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Header with sticky navigation -->
+@*     <header>
+        <div class="logo">
+            <h1>Trung Tâm Đào Tạo</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="/Privacy">Privacy</a></li>
+                <li><a href="/Courses">Khóa Học</a></li>
+                <li><a href="/Contact">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header> *@
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Khám Phá Khóa Học Chất Lượng</h2>
+            <p>Chúng tôi cung cấp các khóa học chất lượng cao giúp bạn đạt được mục tiêu học tập của mình.</p>
+            <a href="#" class="cta-button">Khám Phá Ngay</a>
+        </div>
+    </section>
+
+    <!-- Featured Courses Section -->
+    <section class="featured-courses">
+        <h2>Khóa Học Nổi Bật</h2>
+        <div class="course-grid">
+            <div class="course-item">
+                <img src="https://cdn1585.cdn4s4.io.vn//media/articles/546/content/web-development-la-gi.jpg" alt="Course 1">
+                <h3>Khóa học Lập trình Web</h3>
+                <p>Khám phá cách xây dựng trang web từ cơ bản đến nâng cao.</p>
+                <a href="#" class="cta-button">Xem Chi Tiết</a>
+            </div>
+            <div class="course-item">
+                <img src="https://images.viblo.asia/full/5724797b-ae58-4a60-9e71-c70386cb1994.jpg" alt="Course 2">
+                <h3>Khóa học Thiết kế UX/UI</h3>
+                <p>Thiết kế giao diện người dùng với trải nghiệm tuyệt vời.</p>
+                <a href="#" class="cta-button">Xem Chi Tiết</a>
+            </div>
+            <div class="course-item">
+                <img src="https://topmax.edu.vn/wp-content/uploads/2022/12/khoa-hoc-marketing-thuc-chien-4.0-master-1.png" alt="Course 3">
+                <h3>Khóa học Marketing Online</h3>
+                <p>Học cách xây dựng chiến lược marketing online hiệu quả.</p>
+                <a href="#" class="cta-button">Xem Chi Tiết</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>Phản Hồi Từ Học Viên</h2>
+        <div class="testimonial-item">
+            <p>"Khóa học Lập trình Web đã giúp tôi có những kiến thức vững vàng để phát triển sự nghiệp lập trình của mình!"</p>
+            <p><strong>- Tôn Thất Văn</strong></p>
+        </div>
+        <div class="testimonial-item">
+            <p>"Giảng viên rất nhiệt tình và dễ hiểu. Tôi đã học được rất nhiều từ khóa học UX/UI!"</p>
+            <p><strong>- Nguyễn Đình Hiến</strong></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Giới thiệu</a>
+            <a href="#">Điều khoản</a>
+            <a href="#">Chính sách bảo mật</a>
+        </div>
+        <p>&copy; 2025 Trung Tâm Đào Tạo. Tất cả các quyền được bảo vệ.</p>
+    </footer>
+
+    <script src="~/js/HomePage.js"></script>
+</body>
+</html>

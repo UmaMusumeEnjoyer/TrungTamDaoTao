@@ -2,7 +2,56 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>Trang này chỉ dành cho Admin. Đây là các thông tin và chức năng quản lý của Admin.</p>
+<!-- Phần Header - Chào mừng Admin -->
+<section class="hero-section text-center bg-primary text-white py-5">
+    <div class="container">
+        <h2>@ViewBag.Message</h2>
+        <p class="lead">Trang này dành cho Admin, nơi bạn có thể quản lý khóa học, học viên và các chức năng khác.</p>
+    </div>
+</section>
 
+<!-- Phần chính - Các chức năng quản lý của Admin -->
+<section class="container mt-5">
+    <div class="row">
+        <!-- Quản lý khóa học -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-info">
+                <div class="card-header text-center">
+                    <h4 class="card-title">Quản lý Khóa Học</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Tạo, sửa, hoặc xóa các khóa học mà trung tâm của bạn cung cấp.</p>
+                    <a href="@Url.Action("Index", "KhoaHoc")" class="btn btn-light btn-block">Đi đến Quản lý</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quản lý học viên -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-header text-center">
+                    <h4 class="card-title">Quản lý Học Viên</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Quản lý thông tin học viên, theo dõi tiến trình và cập nhật hồ sơ.</p>
+                    <a href="@Url.Action("Index", "HocVien")" class="btn btn-light btn-block">Đi đến Quản lý</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-header text-center">
+                    <h4 class="card-title">Quản lý doanh thu</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Quản lý thông tin doanh thu, theo dõi tiến trình và cập nhật hồ sơ.</p>
+                    <a href="@Url.Action("Revenue", "Admin")" class="btn btn-light btn-block">Đi đến Quản lý</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
 

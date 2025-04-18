@@ -1,35 +1,44 @@
 ﻿@model KhoaHoc
 
 <form method="post" asp-action="DeletePOST">
-	<input asp-for="MaKhoaHoc" hidden />"
-	<div class="border pt-3 mt-4">
-		<div class="row pb-2">
-			<h2 class=" text-primary text-md-center"> Delete Category</h2>
-			<hr />
-		</div>
-		<div asp-validation-summary="All"></div>
-		<div class="mb-3">
-			<label asp-for="TenKhoaHoc"></label>
-			<input asp-for="TenKhoaHoc" disable class="form-control" />
+    <input asp-for="MaKhoaHoc" hidden />
+    <div class="card border-light mt-4">
+        <div class="card-header bg-danger text-white text-center">
+            <h2>Xóa Khóa Học</h2>
+        </div>
+        <div class="card-body">
+            <div asp-validation-summary="All"></div>
 
+            <div class="mb-3">
+                <label asp-for="TenKhoaHoc" class="form-label">Tên khóa học</label>
+                <input asp-for="TenKhoaHoc" disabled class="form-control" />
+            </div>
 
-		</div>
+            <div class="mb-3">
+                <label asp-for="GiangVien" class="form-label">Giảng viên</label>
+                <input asp-for="GiangVien" disabled class="form-control" />
+            </div>
 
-		<div class="mb-3">
-			<label asp-for="GiangVien"></label>
-			<input asp-for="GiangVien" disable class="form-control" />
+            <div class="mb-3">
+                <label asp-for="HocPhi" class="form-label">Học phí</label>
+                <input asp-for="HocPhi" disabled class="form-control" />
+            </div>
 
-		</div>
+            <div class="mb-3">
+                <label asp-for="SoLuongHocVien" class="form-label">Số lượng học viên</label>
+                <input asp-for="SoLuongHocVien" disabled class="form-control" />
+            </div>
 
-		<div class="mt-3">
-			<button type="submit" class="btn btn-primary" style="width:150px">Delete</button>
-			<a asp-controller="KhoaHoc" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
-		</div>
-	</div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-danger" style="width:150px">Xóa</button>
+                <a asp-controller="KhoaHoc" asp-action="Index" class="btn btn-secondary" style="width:150px">Quay lại</a>
+            </div>
+        </div>
+    </div>
 </form>
 
 @section Scripts {
-	@{
-		<partial name="_ValidationScriptsPartial" />
-	}
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
 }

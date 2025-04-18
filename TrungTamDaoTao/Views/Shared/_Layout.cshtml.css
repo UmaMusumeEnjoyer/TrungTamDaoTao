@@ -46,3 +46,35 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* Navbar */
+.navbar {
+    padding: 10px 20px;
+}
+
+.navbar-nav .nav-item .nav-link {
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+    .navbar-nav .nav-item .nav-link:hover {
+        background-color: #0077b6;
+        color: white;
+    }
+
+.navbar-toggler-icon {
+    background-color: #0077b6;
+}
+
+.nav-item {
+    margin-left: 10px;
+}
+
+.hero-section {
+    background: #0077B6;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}

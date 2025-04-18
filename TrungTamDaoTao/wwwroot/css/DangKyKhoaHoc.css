@@ -1,0 +1,88 @@
+﻿/* Hero Section */
+.hero-section {
+    background: #0077B6;
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+    .hero-section h1 {
+        font-size: 3rem;
+        font-weight: 600;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+        margin-top: 10px;
+    }
+
+/* Courses Section */
+.courses-section {
+    padding: 50px 0;
+}
+
+.course-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.course-card-body {
+    padding: 20px;
+}
+
+.course-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.course-teacher, .course-date, .course-stats {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.course-actions button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .course-actions button.btn-primary {
+        background-color: #0077B6;
+        border: none;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .course-actions button.btn-primary:hover {
+            background-color: #005f85;
+        }
+
+    .course-actions button.btn-danger {
+        background-color: #e74c3c;
+        border: none;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+        .course-actions button.btn-danger:hover {
+            background-color: #c0392b;
+        }
+
+/* Footer */
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+    .footer p {
+        font-size: 1rem;
+        color: #333;
+    }

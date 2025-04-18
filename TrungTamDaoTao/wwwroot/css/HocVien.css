@@ -1,0 +1,31 @@
+﻿/* Thêm một số hiệu ứng đẹp cho các phần tử */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+/* Nút chính */
+.btn-primary {
+    background-color: #0077B6;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #BDC3C7;
+    border: none;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}

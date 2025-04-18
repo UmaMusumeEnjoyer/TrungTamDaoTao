@@ -1,21 +1,173 @@
-﻿.account-container {
-    background-image: url('../images/GWobnEWakAA0fmO.jfif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat-y;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem 0;
+﻿/* Reset các kiểu mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.account-box {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    max-width: 500px;
-    width: 100%;
-    opacity: .9;
+/* Màu sắc và font chữ chung */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
 }
+
+/* Header cố định */
+/*header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0077B6;  Màu nền của header 
+    z-index: 1000;  Đảm bảo header nằm trên các phần tử khác 
+    padding: 20px 20px;  Điều chỉnh padding cho header 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}*/
+
+/* Tạo khoảng cách cho phần nội dung tránh bị che khuất */
+/*body {
+    padding-top: 70px;*/ /* Điều chỉnh này tùy theo chiều cao của header */
+/*}*/
+
+
+
+
+    header .logo h1 {
+        color: white;
+        font-size: 2em;
+    }
+
+    header nav ul {
+        list-style: none;
+        display: flex;
+    }
+
+        header nav ul li {
+            margin-left: 30px;
+        }
+
+            header nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.2em;
+                transition: color 0.3s ease;
+            }
+
+                header nav ul li a:hover {
+                    color: #ff6363;
+                }
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(45deg, #FF6F61, #FFD700);
+    padding: 80px 0;
+    color: white;
+    text-align: center;
+}
+
+    .hero h2 {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+    }
+
+.cta-button {
+    background-color: #ff6363;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+    .cta-button:hover {
+        background-color: #FF4747;
+    }
+
+/* Featured Courses Section */
+.featured-courses {
+    padding: 50px 10%;
+    text-align: center;
+}
+
+    .featured-courses h2 {
+        font-size: 2.5em;
+        margin-bottom: 50px;
+    }
+
+.course-grid {
+    display: flex;
+    justify-content: space-around;
+}
+
+.course-item {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    text-align: center;
+    border-radius: 8px;
+}
+
+    .course-item img {
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    .course-item h3 {
+        font-size: 1.5em;
+        margin-top: 20px;
+    }
+
+    .course-item p {
+        margin: 10px 0;
+    }
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #f5f5f5;
+    padding: 50px 10%;
+    text-align: center;
+}
+
+    .testimonials h2 {
+        font-size: 2.5em;
+        margin-bottom: 40px;
+    }
+
+.testimonial-item {
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+    .testimonial-item p {
+        margin-bottom: 10px;
+    }
+
+/* Footer */
+footer {
+    background-color: #0077B6;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-links {
+    margin-bottom: 20px;
+}
+
+    .footer-links a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 1.1em;
+    }
+
+        .footer-links a:hover {
+            color: #ff6363;
+        }

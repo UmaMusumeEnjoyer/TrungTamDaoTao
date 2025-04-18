@@ -22,10 +22,19 @@ namespace TrungTamDaoTao.Controllers
 
             var user = _context.Users.FirstOrDefault(u => u.MaHocVien == Convert.ToInt32(HttpContext.Session.GetString("MaHocVien")));
 
-            // Nội dung cho User
-            ViewBag.Message = "Chào mừng " + user.HoTen;
+            // Kiểm tra nếu người dùng tồn tại
+            if (user != null)
+            {
+                ViewBag.Message = "Chào mừng " + user.HoTen;
+            }
+            else
+            {
+                ViewBag.Message = "Người dùng không tồn tại!";
+            }
+
             return View();
         }
+
 
 
         [HttpGet]
@@ -81,5 +90,7 @@ namespace TrungTamDaoTao.Controllers
             // Nếu có lỗi trong quá trình xác thực model
             return View(model);
         }
+
+
     }
 }

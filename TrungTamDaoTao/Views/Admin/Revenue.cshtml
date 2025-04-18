@@ -1,33 +1,42 @@
-﻿@model IEnumerable<dynamic> 
-
-@{
+﻿@{
     ViewData["Title"] = "Doanh Thu Khóa Học";
 }
 
-<h2>Doanh Thu Khóa Học</h2>
+<!-- Phần Header - Tiêu đề trang -->
+<section class="hero-section text-center bg-success text-white py-5">
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <p class="lead">Theo dõi doanh thu từ các khóa học đã đăng ký của học viên</p>
+    </div>
+</section>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>MaKhoaHoc</th>
-            <th>Tên Khóa Học</th>
-            <th>Giảng Viên</th>
-            <th>Học Phí</th>
-            <th>Số Lượng Học Viên Hiện Tại</th>
-            <th>Doanh Thu</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var khoaHoc in Model)
-        {
+<!-- Phần chính - Danh sách doanh thu của các khóa học -->
+<section class="container mt-5">
+    <h3 class="text-center mb-4">Danh sách Doanh Thu Các Khóa Học</h3>
+
+    <table class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td>@khoaHoc.MaKhoaHoc</td>
-                <td>@khoaHoc.TenKhoaHoc</td>
-                <td>@khoaHoc.GiangVien</td>
-                <td>@khoaHoc.HocPhi</td>
-                <td>@khoaHoc.SoLuongHocVienHienTai</td>
-                <td>@khoaHoc.DoanhThu</td>
+                <th>Tên khóa học</th>
+                <th>Giảng viên</th>
+                <th>Học phí</th>
+                <th>Số học viên hiện tại</th>
+                <th>Doanh thu</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var khoaHoc in Model)
+            {
+                <tr>
+                    <td>@khoaHoc.TenKhoaHoc</td>
+                    <td>@khoaHoc.GiangVien</td>
+                    <td>@khoaHoc.HocPhi.ToString("C0")</td>
+                    <td>@khoaHoc.SoLuongHocVienHienTai</td>
+                    <td>@khoaHoc.DoanhThu.ToString("C0")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>
+
+

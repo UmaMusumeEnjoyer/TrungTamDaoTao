@@ -1,6 +1,63 @@
 ﻿@{
-    ViewData["Title"] = "User Dashboard";
+    ViewData["Title"] = "Trang Cá Nhân - Chào Mừng Người Dùng";
 }
 
-<h2>@ViewBag.Message</h2>
-<p>Chào mừng bạn đến với trang người dùng. Đây là các thông tin cá nhân của bạn.</p>
+<section class="hero-section text-center bg-primary text-white py-5">
+    <div class="container">
+        <h2>@ViewBag.Message</h2>
+        <p class="lead">Đây là trang để bạn quản lý tài khoản và khoá học của mình.</p>
+    </div>
+</section>
+
+<section class="container mt-5">
+    <div class="row">
+        <!-- Quản lý khóa học -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-info">
+                <div class="card-header text-center">
+                    <h4 class="card-title">Khoá học của tôi</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Đăng ký khoá học của bạn.</p>
+                    <a href="@Url.Action("Index", "DangKyKhoaHoc")" class="btn btn-light btn-block">Đi đến đăng ký khoá học</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quản lý học viên -->
+        <div class="col-md-4 mb-4">
+            <div class="card text-white bg-success">
+                <div class="card-header text-center">
+                    <h4 class="card-title">Quản lý tài khoản của tôi</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Quản lý, chỉnh sửa tài khoản của bạn.</p>
+                    <a href="@Url.Action("UserEdit", "User")" class="btn btn-light btn-block">Đi đến Quản lý</a>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</section>
+
+
+<style>
+    .hero-section {
+        background-color: #007bff;
+        padding: 60px 0;
+        color: white;
+    }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+    .lead {
+        font-size: 1.25rem;
+        font-weight: lighter;
+    }
+</style>

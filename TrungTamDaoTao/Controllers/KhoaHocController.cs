@@ -32,6 +32,12 @@ namespace TrungTamDaoTao.Controllers
         {
             if (ModelState.IsValid)
             {
+                var existingUser = _context.KhoaHocs.FirstOrDefault(u => u.TenKhoaHoc == obj.TenKhoaHoc);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError(string.Empty, "Khoá học đã tồn tại.");
+                    return View(obj);
+                }
                 _context.KhoaHocs.Add(obj);
                 _context.SaveChanges();
                 TempData["success"] = "Thêm khóa học thành công";
